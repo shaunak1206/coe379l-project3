@@ -5,9 +5,9 @@
 
 ## 1. Introduction and Project Statement
 
-Fine-tuning pre-trained language models has become a standard approach for adapting general-purpose models to specific tasks. However, a critical concern in this process is catastrophic forgetting—the phenomenon where a model loses its ability to perform previously learned tasks when trained on new data. This project investigates both the benefits and potential drawbacks of fine-tuning by adapting a small language model (`google/flan-t5-small`) to generate concise summaries of product reviews while measuring whether this specialization comes at the cost of general knowledge.
+The goal of this project is to fine-tune a small pretrained language model so that it can generate concise and clear one-sentence summaries of product reviews. Summarization is a well-defined text-to-text task where the model must condense information while preserving meaning, which makes it a useful setting for studying how targeted fine-tuning affects model behavior. Product reviews are particularly suitable because they follow a consistent pattern, vary in length, and often contain a human-written summary that serves as an ideal reference target. The central aim of the project is to show how a lightweight model can be adapted to produce higher quality summaries compared to its baseline performance.
 
-Summarization is a fundamental natural language processing task with broad applications in e-commerce, content curation, and information retrieval. Product reviews, in particular, benefit from summarization as they help consumers quickly understand key points without reading lengthy text. However, when a model is fine-tuned exclusively on review summarization, it may lose its ability to answer general knowledge questions or perform other tasks it was originally capable of handling.
+At the same time, the project examines an important side effect of model specialization, which is forgetting. When a model is fine-tuned on a narrow domain, its performance on tasks outside that domain may degrade. This type of behavior is relevant in many real-world deployments where models are continuously adapted for specific applications. By training the model on summarization and then testing its ability to answer basic factual questions, we can observe whether the specialization comes at the cost of reduced general knowledge. The project therefore has two connected objectives: improving capability on the summarization task and measuring whether that improvement weakens the model's performance on unrelated prompts. Together, these goals make the project a balanced study of both gains and trade-offs from fine-tuning.
 
 This project fine-tuned FLAN-T5-Small on the Amazon Fine Food Reviews dataset to generate one-sentence summaries of product reviews. We evaluated the model's summarization quality using ROUGE metrics and compared its performance on a set of general knowledge questions before and after fine-tuning to assess whether catastrophic forgetting occurred.
 
@@ -15,7 +15,7 @@ This project fine-tuned FLAN-T5-Small on the Amazon Fine Food Reviews dataset to
 
 ### Data Source
 
-We used the **Amazon Fine Food Reviews** dataset, available on Hugging Face as `jhan21/amazon-food-reviews-dataset`.
+The primary dataset for this project is the **Amazon Fine Food Reviews** dataset, a publicly available collection of about five hundred sixty-eight thousand product reviews. Each record contains a detailed review text written by a customer and a shorter human-written summary that captures the main message of the review. The dataset is available on Hugging Face as `jhan21/amazon-food-reviews-dataset` and includes clearly labeled `Summary` and `Text` fields that can be used directly for supervised learning. Its size, structure, and availability make it ideal for training a model to map long-form text to shorter summaries.
 
 - **Original Size:** ~568,000 reviews spanning over 10 years (up to October 2012)
 - **Sampled Size:** 20,000 reviews (for computational efficiency)
@@ -28,7 +28,11 @@ We used the **Amazon Fine Food Reviews** dataset, available on Hugging Face as `
 - **Data Split:** 80% Train (16,000 samples), 10% Validation (2,000 samples), 10% Test (2,000 samples)
 - **Source:** [Hugging Face Dataset](https://huggingface.co/datasets/jhan21/amazon-food-reviews-dataset)
 
+To evaluate forgetting, we created a small separate set of factual question and answer pairs. These questions are simple examples of common world knowledge that the base model typically handles well. By testing both the base model and the fine-tuned model on this question set, we can compare changes in accuracy and observe whether the fine-tuning process alters the model's ability to answer basic queries. Combining a large authentic dataset with a small handcrafted evaluation set provides a complete foundation for exploring both summarization performance and forgetting.
+
 ### Technologies
+
+The model chosen for this project is `google/flan-t5-small`, which is a lightweight text-to-text transformer hosted on Hugging Face. It has been instruction-tuned on a variety of language tasks and provides strong baseline performance while remaining small enough for efficient fine-tuning. This balance makes it an appropriate model for exploring task-specific adaptation in a controlled setting.
 
 - **Model:** `google/flan-t5-small` (Hugging Face)
   - Architecture: Encoder-decoder transformer
@@ -48,6 +52,8 @@ We used the **Amazon Fine Food Reviews** dataset, available on Hugging Face as `
 
 ### Preprocessing
 
+We began by loading the dataset from Hugging Face and preparing it for training. This includes removing empty entries, trimming overly long reviews for computational efficiency, and creating training, validation, and test splits. The full review text is used as the model input, preceded by a short instruction such as "Summarize this review:", and the corresponding human-written summary serves as the target output. This establishes a straightforward sequence-to-sequence mapping for the model to learn.
+
 1. **Data Loading:** Downloaded the dataset directly from Hugging Face using `load_dataset()`
 2. **Filtering:** 
    - Removed reviews exceeding 512 characters to manage memory and training time
@@ -60,6 +66,8 @@ We used the **Amazon Fine Food Reviews** dataset, available on Hugging Face as `
    - Used T5 tokenizer with appropriate padding and truncation
 
 ### Fine-Tuning Strategy
+
+Fine-tuning is performed using a supervised learning setup with teacher forcing, following standard practices in sequence-to-sequence training. We use the Hugging Face Transformers library to run the training loop, track validation loss, and save model checkpoints.
 
 - **Task Type:** Sequence-to-Sequence (Seq2Seq) text generation
 - **Training Framework:** Hugging Face `Seq2SeqTrainer` with `Seq2SeqTrainingArguments`
@@ -79,6 +87,8 @@ We used the **Amazon Fine Food Reviews** dataset, available on Hugging Face as `
 
 ### Evaluation Metrics
 
+After training, we evaluate the summarization quality on the test set using automatic metrics such as ROUGE, which measure how closely the model's summary matches the human-written one. We also examine qualitative examples to understand how the fine-tuned model improves in clarity, relevance, and faithfulness to the original text.
+
 1. **ROUGE Scores:** 
    - ROUGE-1: Unigram overlap between generated and reference summaries
    - ROUGE-2: Bigram overlap
@@ -89,6 +99,7 @@ We used the **Amazon Fine Food Reviews** dataset, available on Hugging Face as `
 2. **Generation Length:** Average number of tokens in generated summaries (excluding padding)
 
 3. **Forgetting Analysis:** 
+   To measure forgetting, we test both the base model and the fine-tuned model on the separate factual question set. We compare their answers with the expected responses and look for changes in accuracy or consistency. Even small shifts in performance can indicate that specialization has influenced the model's broader abilities.
    - Custom test set of 8 general knowledge questions covering:
      - Geography (capital cities)
      - Basic facts (days in a week, colors)

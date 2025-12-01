@@ -20,19 +20,17 @@ The core logic is contained in a Jupyter notebook designed to run on Google Cola
 
 ### Prerequisites
 - A Google account (to access Google Colab).
-- The dataset file `Reviews.csv` (see Data instructions below).
 
 ### Data Setup
-1.  Download the **Amazon Fine Food Reviews** dataset from Kaggle:  
-    [https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews)
-2.  Extract the zip file to get `Reviews.csv`.
+The dataset is automatically downloaded from Hugging Face when you run the notebook. No manual download is required. The notebook uses the **Amazon Fine Food Reviews** dataset available at:
+- [Hugging Face Dataset](https://huggingface.co/datasets/jhan21/amazon-food-reviews-dataset)
 
 ### Running the Notebook
 1.  Go to [Google Colab](https://colab.research.google.com/).
 2.  Click **File > Upload notebook** and upload `notebooks/Project3_Summarization_FineTuning.ipynb` from this repository.
-3.  **Important:** In Colab, go to the left sidebar, click the folder icon ("Files"), and drag-and-drop your `Reviews.csv` file into the runtime storage.
-4.  Go to **Runtime > Change runtime type** and ensure **T4 GPU** is selected.
-5.  Click **Runtime > Run all**.
+3.  Go to **Runtime > Change runtime type** and ensure **T4 GPU** is selected.
+4.  Click **Runtime > Run all**.
+5.  The dataset will be automatically downloaded from Hugging Face when the notebook runs.
 
 ### Output
 The notebook will produce:
