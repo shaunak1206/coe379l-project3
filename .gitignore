@@ -1,0 +1,27 @@
+# Large data files - don't commit to GitHub
+*.csv
+data/
+*.zip
+*.tar.gz
+
+# Model checkpoints (too large)
+models/
+*.pt
+*.pth
+*.bin
+finetuned_summarizer_final/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
