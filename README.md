@@ -40,8 +40,3 @@ The notebook will produce:
 - **Forgetting Analysis:** Accuracy scores on a general knowledge QA set before and after training.
 - **Saved Model:** A zip file of the fine-tuned model (if code block uncommented).
 
-## Deliverables
-- **Code:** This Git repository.
-- **Report:** A final report detailing methods and results (see `reports/`).
-- **Video:** A 10-minute presentation of the findings.
-
