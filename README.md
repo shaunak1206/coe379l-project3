@@ -1,7 +1,7 @@
 # Project 3: Fine Tuning a Small Language Model for Summarization and Measuring Forgetting
 
 **Authors:** Shaunak Kapur & Pranav Krishnan  
-**Course:** COE 379L - Software Design for Data Science  
+**Course:** COE 379L 
 **Date:** Fall 2025
 
 ## Project Overview
