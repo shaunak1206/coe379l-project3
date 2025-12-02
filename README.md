@@ -10,7 +10,7 @@ This project explores the effects of fine-tuning a small language model (`google
 2.  Measure "catastrophic forgetting" by evaluating whether the fine-tuned model loses its ability to answer general knowledge questions compared to the base model.
 
 ## Repository Structure
-- `notebooks/`: Contains the Jupyter notebook (`Project3_Summarization_FineTuning.ipynb`) for training and evaluation.
+- `notebooks/`: Contains the Jupyter notebook (`Project3_Summarization_FineTuning (Ran on Colab).ipynb`) for training and evaluation.
 - `reports/`: Contains the project proposal and the final report template.
 - `Use_of_AI.md`: Documentation of AI tools used in this project.
 
@@ -27,7 +27,7 @@ The dataset is automatically downloaded from Hugging Face when you run the noteb
 
 ### Running the Notebook
 1.  Go to [Google Colab](https://colab.research.google.com/).
-2.  Click **File > Upload notebook** and upload `notebooks/Project3_Summarization_FineTuning.ipynb` from this repository.
+2.  Click **File > Upload notebook** and upload `notebooks/Project3_Summarization_FineTuning (Ran on Colab).ipynb` from this repository.
 3.  Go to **Runtime > Change runtime type** and ensure **T4 GPU** is selected.
 4.  Click **Runtime > Run all**.
 5.  The dataset will be automatically downloaded from Hugging Face when the notebook runs.
