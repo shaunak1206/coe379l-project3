@@ -2,7 +2,7 @@
 
 **Authors:** Shaunak Kapur & Pranav Krishnan  
 **Course:** COE 379L 
-**Date:** Fall 2025
+
 
 ## Project Overview
 This project explores the effects of fine-tuning a small language model (`google/flan-t5-small`) on a specific task: summarizing product reviews. We aim to:
