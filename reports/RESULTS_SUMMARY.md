@@ -14,11 +14,11 @@
 
 | Metric | Score (%) |
 | :--- | :--- |
-| ROUGE-1 | 12.64 |
-| ROUGE-2 | 2.44 |
-| ROUGE-L | 12.41 |
-| ROUGE-Lsum | 12.35 |
-| Average Generation Length | 7.83 tokens |
+| ROUGE-1 | 17.24 |
+| ROUGE-2 | 7.06 |
+| ROUGE-L | 16.92 |
+| ROUGE-Lsum | 16.87 |
+| Average Generation Length | 6.62 tokens |
 
 ## Forgetting Analysis
 
@@ -34,7 +34,7 @@
 
 1. **Summarization Improvement:** The fine-tuned model learned to generate shorter, more concise summaries compared to the base model.
 
-2. **Moderate ROUGE Scores:** ROUGE scores around 12-13% indicate moderate performance. The model captures some unigram overlap but struggles with exact phrase matches.
+2. **Improved ROUGE Scores:** ROUGE scores around 17% (ROUGE-1) and 7% (ROUGE-2) indicate improved performance compared to initial training. The model captures better unigram and bigram overlap with reference summaries.
 
 3. **No Forgetting:** The model did not show catastrophic forgetting - accuracy on general knowledge questions remained at 25% for both models.
 
