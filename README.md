@@ -5,6 +5,9 @@
 
 
 ## Project Overview
+
+🎥 **[Watch the Demo Video](https://drive.google.com/file/d/1yR2gWrXXymmAX_JBzHKyJdX_kWu2ko5q/view?usp=sharing)**
+
 This project explores the effects of fine-tuning a small language model (`google/flan-t5-small`) on a specific task: summarizing product reviews. We aim to:
 1.  Improve the model's ability to generate concise, one-sentence summaries of Amazon product reviews.
 2.  Measure "catastrophic forgetting" by evaluating whether the fine-tuned model loses its ability to answer general knowledge questions compared to the base model.
@@ -43,5 +46,5 @@ The notebook will produce:
 ## Deliverables
 - **Code:** This Git repository.
 - **Report:** A final report detailing methods and results (see `reports/`).
-- **Video:** A 10-minute presentation of the findings. [Watch the demo video](https://drive.google.com/file/d/1yR2gWrXXymmAX_JBzHKyJdX_kWu2ko5q/view?usp=sharing)
+- **Video:** A presentation of the findings. [Watch the demo video](https://drive.google.com/file/d/1yR2gWrXXymmAX_JBzHKyJdX_kWu2ko5q/view?usp=sharing)
 
