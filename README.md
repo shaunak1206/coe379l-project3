@@ -46,5 +46,5 @@ The notebook will produce:
 ## Deliverables
 - **Code:** This Git repository.
 - **Report:** A final report detailing methods and results (see `reports/`).
-- **Video:** A presentation of the findings. [Watch the demo video](https://drive.google.com/file/d/1yR2gWrXXymmAX_JBzHKyJdX_kWu2ko5q/view?usp=sharing)
+- **Video:** A presentation of the findings. https://drive.google.com/file/d/1yR2gWrXXymmAX_JBzHKyJdX_kWu2ko5q/view?usp=sharing
 
